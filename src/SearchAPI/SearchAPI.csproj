@@ -44,7 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grammar\SearchParamsExpression.cs" />
+    <Compile Include="Condition.cs" />
+    <Compile Include="Grammar\LastUpdatedLexer.cs" />
+    <Compile Include="Grammar\OperatorsLexer.cs" />
+    <Compile Include="Operator.cs" />
+    <Compile Include="SearchParamsExpression.cs" />
     <Compile Include="Grammar\SkipLexer.cs" />
     <Compile Include="Grammar\SortLexer.cs" />
     <Compile Include="Grammar\TakeLexer.cs" />

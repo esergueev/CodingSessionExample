@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using SearchAPI.Grammar;
 using Sprache;
 
-namespace SearchAPI.Grammar
+namespace SearchAPI
 {
     public static class SearchParamsExpression
     {
@@ -9,7 +10,8 @@ namespace SearchAPI.Grammar
         {
             var special = SortLexer.Sort
                 .Or(TakeLexer.Take)
-                .Or(SkipLexer.Skip);
+                .Or(SkipLexer.Skip)
+                .Or(LastUpdatedLexer.LastUpdated);
 
             return special.DelimitedBy(Parse.Char('&')).End().Parse(expression);
         }
