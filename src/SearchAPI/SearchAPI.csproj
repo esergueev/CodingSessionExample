@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Condition.cs" />
+    <Compile Include="Grammar\DataTypesLexer.cs" />
     <Compile Include="Grammar\LastUpdatedLexer.cs" />
+    <Compile Include="Grammar\NumberParserBuilder.cs" />
     <Compile Include="Grammar\OperatorsLexer.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="SearchParamsExpression.cs" />
