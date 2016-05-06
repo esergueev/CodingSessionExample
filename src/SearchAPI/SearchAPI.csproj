@@ -44,20 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Condition.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="Grammar\ConstantsLexer.cs" />
     <Compile Include="Grammar\DataTypesLexer.cs" />
-    <Compile Include="Grammar\LastUpdatedLexer.cs" />
-    <Compile Include="Grammar\NumberParserBuilder.cs" />
     <Compile Include="Grammar\OperatorsLexer.cs" />
     <Compile Include="Operator.cs" />
-    <Compile Include="SearchParamsExpression.cs" />
-    <Compile Include="Grammar\SkipLexer.cs" />
-    <Compile Include="Grammar\SortLexer.cs" />
-    <Compile Include="Grammar\TakeLexer.cs" />
     <Compile Include="Ordering.cs" />
     <Compile Include="OrderingDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Take.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

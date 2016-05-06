@@ -60,11 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grammar\LastUpdatedLexerTests.cs" />
-    <Compile Include="Grammar\SkipLexerTests.cs" />
-    <Compile Include="Grammar\SortLexerTests.cs" />
-    <Compile Include="Grammar\TakeLexerTests.cs" />
-    <Compile Include="NumberParserBuilderTests.cs" />
+    <Compile Include="ExpressionParserBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
