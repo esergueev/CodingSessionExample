@@ -12,10 +12,10 @@ namespace SearchAPI
 
     public class PagingExpression : Expression
     {
-        public Paging Paging { get; }
+        public Operator Paging { get; }
         public uint Value { get; }
 
-        public PagingExpression(Paging paging, uint value)
+        public PagingExpression(Operator paging, uint value)
         {
             Paging = paging;
             Value = value;
@@ -60,11 +60,6 @@ namespace SearchAPI
         }
     }
 
-    public enum Paging
-    {
-        Limit,
-        Offset,
-    }
 
     public enum DataType
     {
@@ -76,7 +71,11 @@ namespace SearchAPI
 
     public class ExpressionParserBuilder
     {
-        private readonly IList<Parser<Expression>> _conditionParsers = new List<Parser<Expression>>();
+        private readonly IList<Parser<Expression>> _conditionParsers = new List<Parser<Expression>>
+        {
+            {PagingParser()},
+            {PagingParser()},
+        };
 
         public ExpressionParserBuilder AddCondition(string column, DataType dataType)
         {
@@ -155,11 +154,11 @@ namespace SearchAPI
                 select new OrderingExpression(column, direction.GetOrElse(OrderingDirection.Ascending));
         }
 
-        private Parser<Expression> PagingParser()
+        private static Parser<Expression> PagingParser()
         {
             return
                 from paging in
-                    Parse.IgnoreCase("_take").Return(Paging.Limit).Or(Parse.IgnoreCase("_skip").Return(Paging.Offset))
+                    Parse.IgnoreCase("_take").Return(Operator.Take).Or(Parse.IgnoreCase("_skip").Return(Operator.Skip))
                 from delimeter in ConstantsLexer.KeyValueDelimeterParser
                 from value in Parse.Number
                 select new PagingExpression(paging, uint.Parse(value));
@@ -180,13 +179,12 @@ namespace SearchAPI
             return
                 (input) =>
                 {
-                    return _conditionParsers
-                        .Aggregate((a, b) => a.Or(b))
-                        .Or(PagingParser())
-                        .Or(UndefinedParser())
-                        .DelimitedBy(Parse.Char('&'))
-                        .End()
-                        .Parse(input);
+                    return
+                        _conditionParsers.Aggregate((a, b) => a.Or(b))
+                            .Or(UndefinedParser())
+                            .DelimitedBy(Parse.Char('&'))
+                            .End()
+                            .Parse(input);
                 };
         }
     }

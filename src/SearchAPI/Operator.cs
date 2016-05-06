@@ -26,6 +26,10 @@
         Text,
 
         //Geometry
-        Intersect
+        Intersect,
+
+        //Paging
+        Take,
+        Skip,
     }
 }
