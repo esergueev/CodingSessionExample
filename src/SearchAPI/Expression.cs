@@ -74,7 +74,6 @@ namespace SearchAPI
         private readonly IList<Parser<Expression>> _conditionParsers = new List<Parser<Expression>>
         {
             {PagingParser()},
-            {PagingParser()},
         };
 
         public ExpressionParserBuilder AddCondition(string column, DataType dataType)

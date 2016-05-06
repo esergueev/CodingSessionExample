@@ -23,15 +23,15 @@ namespace SearchAPI.Grammar
             from val in Integral
             select (object) double.Parse(integral + "." + val);
 
-        public static readonly Parser<object> NumberValueParser = Double
+        internal static readonly Parser<object> NumberValueParser = Double
             .Or(Long);
 
 
-        public static readonly Parser<object> TokenValueParser =
+        internal static readonly Parser<object> TokenValueParser =
              from token in Parse.LetterOrDigit.XOr(Parse.Char('-')).XOr(Parse.Char('_')).Many().Text()
              select token;
 
-        public static readonly Parser<object> StringValueParser = Parse.AnyChar.Except(Parse.Char('&')).AtLeastOnce().Text().Token();
+        internal static readonly Parser<object> StringValueParser = Parse.AnyChar.Except(Parse.Char('&')).AtLeastOnce().Text().Token();
 
     }
 }
